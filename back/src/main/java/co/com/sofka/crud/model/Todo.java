@@ -8,23 +8,18 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private boolean completed;
 
-    @Column
-    private String groupListId;
+    //Relacion toDo y Lista
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_list")
+    private ListModel list;
 
-    public String getGroupListId() {
-        return groupListId;
-    }
-
-    public void setGroupListId(String groupListId) {
-        this.groupListId = groupListId;
-    }
-
+    //contructores
     public Long getId() {
         return id;
     }
@@ -47,5 +42,23 @@ public class Todo {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public ListModel getList() {
+        return list;
+    }
+
+    public void setList(ListModel list) {
+        this.list = list;
+    }
+
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", completed=" + completed +
+                ", list=" + list +
+                '}';
     }
 }

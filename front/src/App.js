@@ -48,7 +48,7 @@ const Form = () => {
     };
 
 
-    fetch(HOST_API + "/todo", {
+    fetch(HOST_API + "/todos", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
@@ -67,13 +67,14 @@ const Form = () => {
     <input
       type="text"
       name="name"
+      className="m-3"
       placeholder="¿Qué piensas hacer hoy?"
       defaultValue={item.name}
       onChange={(event) => {
         setState({ ...state, name: event.target.value })
       }}  ></input>
-    {item.id && <button onClick={onEdit}>Actualizar</button>}
-    {!item.id && <button onClick={onAdd}>Crear</button>}
+    {item.id && <button className='btn btn-primary -3' onClick={onEdit}>Actualizar</button>}
+    {!item.id && <button className='btn btn-primary m-3' onClick={onAdd}>Crear</button>}
   </form>
 }
 
@@ -126,7 +127,7 @@ const List = () => {
     textDecoration: 'line-through'
   };
   return <div>
-    <table >
+    <table className="table table-border text-center" >
       <thead>
         <tr>
           <td>ID</td>
@@ -199,7 +200,7 @@ const StoreProvider = ({ children }) => {
 
 function App() {
   return <StoreProvider>
-    <h3>To-Do List</h3>
+    <h3 className='m-3'>To-Do List</h3>
     <Form />
     <List />
   </StoreProvider>
